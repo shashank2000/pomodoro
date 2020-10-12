@@ -162,6 +162,9 @@ def main(work=work_default, rest=rest_default, long=long_default, cycles=cycles_
         start = datetime.now()
         interrupted = tick(int(work) * 60, timer)
         if interrupted:
+            # partial session logged as well
+            partial_stop = datetime.now()
+            write_pomo(start, partial_stop, "work")
             break
         stop = datetime.now()
         write_pomo(start, stop, "work")
